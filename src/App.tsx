@@ -5,7 +5,7 @@ function App() {
         Expert Mama
       </h1>
       <p className="mt-4 text-lg">
-        সমস্যা আপনার, সমাধান মামার।
+        সমস্যা আপনার, সমাধান আমার।
       </p>
     </div>
   );
