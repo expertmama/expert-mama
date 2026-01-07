@@ -23,7 +23,6 @@ function Navbar() {
       {/* Actions */}
       <div className="space-x-6 text-sm">
         <button className="hover:text-orange-400">Dashboard</button>
-        <button className="hover:text-orange-400">Login</button>
       </div>
     </nav>
   );
