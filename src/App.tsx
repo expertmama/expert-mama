@@ -3,7 +3,7 @@ import { colors } from "./components/color";
 function App() {
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-screen" style={{ backgroundImage: "url('/src/assets/Background.jpg')" }}>
         <Navbar />
         
         <div className="p-6 mx-auto mt-10 max-w-[70%] rounded-2xl bg-white/25 backdrop-blur-xl border
@@ -21,11 +21,10 @@ function App() {
           </div>
 
           {/* Input Box */}
-          <div className="w-full p-6 mx-auto mt-10 max-w-[70%] rounded-2xl bg-white/25 backdrop-blur-xl border
-            border-white/30 shadow-lg flex flex-col items-center flex-grow">
-            
-            <input type="text" placeholder="Example: My AC is making wired noise and not cooling..." className="mt-10 mx-auto block 
-              p-4 rounded-xl border border-gray-300 shadow-md max-w-[70%] w-full" />
+          <div className="w-full p-6 mx-auto mt-10 max-w-[70%] rounded-2xl bg-white/50 backdrop-blur-xl border
+            border-white/30 flex flex-col items-center flex-grow">
+            <input type="text" placeholder="Example: My AC is making wired noise and not cooling..." className="mx-auto block 
+              p-4 rounded-xl border border-gray-300 shadow-md max-w-[70%] w-full h-20 placeholder" />
           </div>
 
           {/* Buttons */}
