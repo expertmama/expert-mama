@@ -2,7 +2,7 @@ import logo from "../assets/Avatar.png";
 
 function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-slate-900 text-white border-b border-slate-700">
+    <nav className="flex items-center justify-between px-6 py-4 bg-slate-900 text-white border-b border-slate-700 max-w-380 mx-auto">
       {/* Brand */}
       <div className="flex items-center gap-2">
         <img
