@@ -21,7 +21,7 @@ function Navbar() {
       </div>
 
       {/* Actions */}
-      <div className="space-x-6 text-sm">
+      <div className="space-x-6 text-sm" class="bg-orange-400 p-3 rounded-2xl shadow-lg">
         <button className="hover:text-orange-400">Dashboard</button>
       </div>
     </nav>
