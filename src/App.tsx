@@ -115,7 +115,7 @@ function App() {
                 </Button>
               </div>
               {/* Robot Image */}
-              <div>
+              <div className="animate-float">
                 <img 
                   src="./src/assets/robo.png" 
                   alt="ROBO 2.0" 
