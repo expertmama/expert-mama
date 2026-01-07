@@ -8,11 +8,16 @@ function Navbar() {
         <img
           src={logo}
           alt="Expert Mama Logo"
-          className="h-6 w-6 object-contain"
+          className="h-12 w-12 object-contain mr-2"
         />
-        <h1 className="text-xl font-bold text-white">
-          Expert Mama
-        </h1>
+        <div>
+          <h1 className="text-3xl font-bold text-white">
+            Expert Mama
+          </h1>
+          <p className="text-sm text-gray-400">
+            সমস্যা আপনার, সমাধান মামার।
+          </p>
+        </div>
       </div>
 
       {/* Actions */}
