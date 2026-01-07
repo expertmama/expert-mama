@@ -1,12 +1,14 @@
 import logo from "../assets/Avatar.png";
 import userAvatar from "../assets/User-Avatar.png";
+import Button from "./Button";
 import { colors } from './color';
 import { useEffect, useRef, useState } from 'react';
+import "../App.css";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null); 
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -29,15 +31,12 @@ function Navbar() {
 
   return (
     <nav
-      className="
+      className="glass
         relative z-50
         flex items-center justify-between
         px-6 py-4
         max-w-[70%] mx-auto
         rounded-b-2xl
-        bg-white/25
-        backdrop-blur-xl
-        border border-white/30
         shadow-lg
         pl-16
         pr-16
@@ -48,7 +47,7 @@ function Navbar() {
         <img
           src={logo}
           alt="Expert Mama Logo"
-          className="h-12 w-12 object-contain"
+          className="h-12 w-12 object-contain duration-300 hover:scale-105 transition-transform cursor-pointer"
         />
         <div>
           <h1 className="text-3xl font-bold text-slate-900">
@@ -62,11 +61,11 @@ function Navbar() {
 
       {/* Actions */}
       <div className="flex items-center space-x-4">
-        <button type="button" 
-            className="text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br 
-            focus:ring-1 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 font-medium rounded-xl text-sm px-4 py-2.5 text-center leading-5 mx-3 mt-1">Dashboard</button>
+        <Button variant="glass">
+          Dashboard
+        </Button>
 
-        <div className="relative">
+        <div className="relative transition-all duration-300 hover:-translate-y-1">
           <button
             ref={buttonRef}
             onClick={() => setOpen(!open)}
