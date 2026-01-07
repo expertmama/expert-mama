@@ -1,6 +1,6 @@
 import logo from "../assets/Avatar.png";
 import userAvatar from "../assets/User-Avatar.png";
-import Colors from "./color";
+import { colors } from './color';
 
 function Navbar() {
   return (
@@ -14,15 +14,16 @@ function Navbar() {
         backdrop-blur-xl
         border border-white/30
         shadow-lg
-        pl-16 pr-16
+        pl-16
+        pr-16
       "
     >
       {/* Brand */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <img
           src={logo}
           alt="Expert Mama Logo"
-          className="h-12 w-12 object-contain mr-2"
+          className="h-12 w-12 object-contain"
         />
         <div>
           <h1 className="text-3xl font-bold text-slate-900">
@@ -35,13 +36,16 @@ function Navbar() {
       </div>
 
       {/* Actions */}
-      <div className="space-x-6 text-sm flex">
-        <button style={{ backgroundColor: Colors.orange }} className="hover:text-orange-400 p-3 rounded-xl">Dashboard</button>
-        <div className="h-10 w-10 object-contain my-auto rounded-full border border-gray-900">
-          <img
-            src={userAvatar}
-            alt="User Avatar"
-          />
+      <div className="flex items-center space-x-4">
+        <button
+          style={{ backgroundColor: colors.orange }}
+          className="text-white p-3 rounded-xl hover:opacity-90 transition"
+        >
+          Dashboard
+        </button>
+
+        <div className="h-10 w-10 rounded-full border border-gray-900 overflow-hidden">
+          <img src={userAvatar} alt="User Avatar" className="h-full w-full object-cover" />
         </div>
       </div>
     </nav>
