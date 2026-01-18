@@ -1,96 +1,118 @@
 import logo from "../assets/Avatar.png";
 import userAvatar from "../assets/User-Avatar.png";
 import Button from "./Button";
-import { colors } from './color';
-import { useEffect, useRef, useState } from 'react';
-import "../App.css";
+import { useEffect, useRef, useState } from "react";
 
 function Navbar() {
-  const [open, setOpen] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null); 
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [avatarOpen, setAvatarOpen] = useState(false);
 
+  const avatarBtnRef = useRef<HTMLButtonElement | null>(null);
+  const avatarMenuRef = useRef<HTMLDivElement | null>(null);
+
+  // Close avatar dropdown on outside click / ESC
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (!menuRef.current || !buttonRef.current) return;
-      const target = e.target as Node;
-      if (!menuRef.current.contains(target) && !buttonRef.current.contains(target)) {
-        setOpen(false);
+    const handleOutside = (e: MouseEvent) => {
+      if (
+        avatarMenuRef.current &&
+        avatarBtnRef.current &&
+        !avatarMenuRef.current.contains(e.target as Node) &&
+        !avatarBtnRef.current.contains(e.target as Node)
+      ) {
+        setAvatarOpen(false);
       }
-    }
-    function handleKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false);
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleKey);
+    };
+
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setAvatarOpen(false);
+        setMobileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("keydown", handleEsc);
+
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKey);
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("keydown", handleEsc);
     };
   }, []);
 
   return (
-    <nav
-      className="glass
-        relative z-50
-        flex items-center justify-between
-        px-6 py-4
-        max-w-[70%] mx-auto
-        rounded-b-2xl
-        shadow-lg
-        pl-16
-        pr-16
-      "
-    >
+    <nav className="glass navbar relative z-50 flex items-center px-4 md:px-10 py-4 w-[95%] md:max-w-[80%] lg:max-w-[70%] mx-auto rounded-b-2xl">
+
       {/* Brand */}
       <div className="flex items-center gap-3">
-        <img
-          src={logo}
-          alt="Expert Mama Logo"
-          className="h-12 w-12 object-contain duration-300 hover:scale-105 transition-transform cursor-pointer"
-        />
+        <img src={logo} alt="Logo" className="h-11 w-11 md:h-12 md:w-12 mt-1.5 object-contain"/>
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">
-            Expert Mama
-          </h1>
-          <p className="text-sm text-gray-600">
+          <h1 className="text-2xl md:text-3xl font-bold">Expert Mama</h1>
+          <p className="text-xs md:text-sm text-gray-600">
             সমস্যা আপনার, সমাধান মামার।
           </p>
         </div>
       </div>
 
       {/* Actions */}
-      <div className="flex items-center space-x-4">
-        <Button variant="glass">
-          Dashboard
-        </Button>
+      <div className="ml-auto flex items-center gap-3 md:gap-5">
 
-        <div className="relative transition-all duration-300 hover:-translate-y-1">
+        {/* Desktop dashboard */}
+        <div className="hidden md:block">
+          <Button variant="glass">Dashboard</Button>
+        </div>
+
+        {/* Avatar */}
+        <div className="relative hidden md:block">
           <button
-            ref={buttonRef}
-            onClick={() => setOpen(!open)}
-            className="h-10 w-10 rounded-full border border-gray-900 overflow-hidden focus:outline-none"
-            aria-haspopup="true"
-            aria-expanded={open}
+            ref={avatarBtnRef}
+            onClick={() => {
+              setAvatarOpen(!avatarOpen);
+              setMobileOpen(false);
+            }}
+            className="h-10 w-10 rounded-full overflow-hidden border border-gray-900"
           >
-            <img src={userAvatar} alt="User Avatar" className="h-full w-full object-cover" />
+            <img src={userAvatar} alt="User" className="h-full w-full object-cover" />
           </button>
 
-          {open && (
+          {avatarOpen && (
             <div
-              ref={menuRef}
-              className="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-lg border border-gray-200 z-[9999]"
-              role="menu"
-              aria-label="User menu"
+              ref={avatarMenuRef}
+              className="flex flex-col items-start absolute right-0 mt-2 w-44 text-sm"
             >
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-t-xl" role="menuitem" onClick={() => { /* navigate to profile */ setOpen(false); }}>Profile</button>
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100" role="menuitem" onClick={() => { /* navigate to settings */ setOpen(false); }}>Settings</button>
-              <div className="border-t border-gray-100" />
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-b-xl text-red-600" role="menuitem" onClick={() => { /* sign out */ setOpen(false); }}>Sign out</button>
+              <button className="menu-item">Profile</button>
+              <button className="menu-item">Settings</button>
+              <div className="border-t" />
+              <button className="menu-item text-red-600">Sign out</button>
             </div>
           )}
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden text-2xl"
+          onClick={() => {
+            setMobileOpen(!mobileOpen);
+            setAvatarOpen(false);
+          }}
+        >
+          ☰
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="absolute top-full left-0 w-full mt-2 glass-card p-4 md:hidden">
+          <Button variant="glass" className="w-full mb-3">
+            Dashboard
+          </Button>
+
+          <div className="flex flex-col gap-2 text-sm">
+            <button className="text-left">Profile</button>
+            <button className="text-left">Settings</button>
+            <button className="text-left text-red-600">Sign out</button>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

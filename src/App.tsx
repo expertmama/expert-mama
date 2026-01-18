@@ -1,144 +1,70 @@
 import Navbar from "./components/Navbar";
-import { colors } from "./components/color";
 import Button from "./components/Button";
+
 function App() {
   return (
-    <>
-      <div className="min-h-screen" style={{ backgroundImage: "url('/src/assets/Background.jpg')" }}>
-        <Navbar />
+    <div
+      className="min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/src/assets/Background.jpg')" }}
+    >
+      <Navbar />
 
-        {/* Main Content */}
-        <div 
-          className="
-            pt-6 
-            mx-auto 
-            mt-6 
-            max-w-[70%] 
-            rounded-2xl 
-            bg-white/25 
-            glass 
-            shadow-lg 
-            flex 
-            flex-col 
-            items-center">
+      {/* Main Content */}
+      <div className="glass-card pt-6 mt-6 mx-auto w-[95%] md:max-w-[80%] lg:max-w-[70%] px-4 md:px-10 flex flex-col items-center">
+        
+        {/* Title & Description */}
+        <div className="text-center">
+          <h1 className="text-3xl md:text-5xl mt-2 text-blue-600">
+            Best Home Service
+          </h1>
 
-            {/* Title & Description */}
-          <div className="text-center">
-              <h1 style={{ color: colors.blue }} 
-               className="
-                text-5xl 
-                font-bold 
-                mt-1 
-                mx-40 
-                tracking-wide" >
-                  Best Home Service
-              </h1>
-            <h1 style={{ color: colors.blue }} 
-              className="
-                text-5xl 
-                font-bold 
-                mt-1 
-                mx-40 
-                tracking-wide" >
-                 At Your Doorstep
-            </h1>
-            <p style={{ color: colors.black }} 
-              className=" 
-                text-xl 
-                mt-5 
-                mx-50 
-                tracking-tight">
-                  Verified experts for cleaning, plumbing, electrical and more. Fixed pricing also allows bargaining.
-            </p>
+          <h1 className="text-3xl md:text-5xl text-blue-600">
+            At Your Doorstep
+          </h1>
+
+          <p className="text-base md:text-xl mt-4 max-w-2xl mx-auto">
+            Verified experts for cleaning, plumbing, electrical and more.
+            Fixed pricing also allows bargaining.
+          </p>
+        </div>
+
+        {/* Input Section */}
+        <div className="w-full mt-6">
+          <div className="glass-card-white flex flex-col md:flex-row items-center gap-4 p-4 md:p-5">
+
+            {/* Input */}
+            <div className="input-wrapper w-full">
+              <textarea
+                placeholder="Example: My AC is making weird noise and not cooling..."
+                rows={1}
+                className="input-glass resize-none overflow-hidden"
+                onInput={(e) => {
+                  const target = e.target as HTMLTextAreaElement;
+                  target.style.height = "auto";
+                  target.style.height = target.scrollHeight + "px";
+                }}
+              />
+              <Button variant="glass">Submit</Button>
+            </div>
+
+            {/* Robot */}
+            <div className="animate-float hidden md:block">
+              <img
+                src="./src/assets/robo.png"
+                alt="ROBO 2.0"
+                className="w-32 h-32 md:w-40 md:h-40 object-contain"
+              />
+            </div>
           </div>
 
-          {/* Input Container Main */}
-          <div className="w-[90%]">
-
-            {/* Input Field & Robot */}
-            <div 
-              className="
-                flex-1
-                flex 
-                items-center
-                w-full
-                p-5 
-                mt-5
-                rounded-2xl 
-                bg-white/50 
-                glass-white 
-                shadow-xs 
-                gap-5 
-                border  border-gray-300">
-
-              {/* Input Field & Submit Button */}
-              <div 
-                className="
-                max-w-full
-                flex-1
-                flex 
-                items-center
-                w-full 
-                p-5
-                rounded-xl 
-                bg-white/50 
-                glass
-                shadow-xs 
-                gap-5 
-                border 
-                border-gray-300">
-                
-                {/* Auto-expanding Textarea */}
-                <textarea
-                  placeholder="Example: My AC is making weird noise and not cooling..."
-                  rows={1}
-                  className="
-                    w-full
-                    resize-none
-                    bg-transparent
-                    text-lg
-                    placeholder-gray-500
-                    focus:outline-none
-                    focus:ring-0
-                    overflow-hidden
-                  "
-                  onInput={(e) => {
-                    const target = e.target as HTMLTextAreaElement;
-                    target.style.height = "auto";
-                    target.style.height = target.scrollHeight + "px";
-                  }}
-                />
-
-                {/* Submit Button */}
-                <Button variant="glass">
-                  Submit
-                </Button>
-              </div>
-              {/* Robot Image */}
-              <div className="animate-float">
-                <img 
-                  src="./src/assets/robo.png" 
-                  alt="ROBO 2.0" 
-                  className=" w-40 h-40 object-contain" 
-                />
-              </div>
-            </div>                               
-
-              {/* Buttons */}
-              <div className="flex justify-center mt-6 mb-4">
-                <Button variant="glass" className="mx-3 mt-3">
-                  Request a Service
-                </Button>
-
-                <Button variant="glass" className="mx-3 mt-3">
-                  Become A 'Hero'
-                </Button>
-              </div>
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6 mb-4">
+            <Button variant="glass">Request a Service</Button>
+            <Button variant="glass">Become A 'Hero'</Button>
           </div>
-
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
