@@ -12,7 +12,8 @@ interface ButtonProps {
 
 const variantStyles: Record<ButtonVariant, string> = {
   blue: `
-    bg-gradient-to-r from-blue-800 via-blue-900 to-blue-950
+    bg-white
+    bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700
     hover:bg-gradient-to-br
     text-white
   `,
@@ -22,9 +23,8 @@ const variantStyles: Record<ButtonVariant, string> = {
     text-white
   `,
   glass: `
-    glass
-    text-gray-700
-    hover:scale-105
+    text-black
+    bg-white
   `,
 };
 
@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   type = "button",
-  variant = "blue",
+  variant = "glass",
   className = "",
 }) => {
   return (
